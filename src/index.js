@@ -2,8 +2,6 @@ const { app, BrowserWindow } = require("electron");
 const path = require('node:path');
 const CryptoDataFetcher = require('./services/api');
 
-// Create function for fetching crypto prices
-
 const createWindow = () => {
     const cryptoDataFetcher = new CryptoDataFetcher();
     cryptoDataFetcher.getCryptoPriceData()

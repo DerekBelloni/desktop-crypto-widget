@@ -29,7 +29,7 @@ class CryptoDataFetcher {
         return this._formatResponseData(metaDataResponse, response);
     }
 
-    async _getCryptoMetadata(cryptoIds, listingsResponse) {
+    async _getCryptoMetadata(cryptoIds) {
         const endPoint = '/v2/cryptocurrency/info';
         const params = { "id": cryptoIds.join(',') };
         const response = await this._fetchData(endPoint, params);
