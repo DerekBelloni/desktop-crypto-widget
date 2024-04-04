@@ -1,0 +1,24 @@
+.logo-class {
+    color: azure;
+    display: inline-block;
+}
+
+.crypto-container {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.crypto-element {
+    display: flex,
+    align-items: center;
+    margin-right: 10px;
+}
+
+.image-class {
+    height: 30px;
+    width: 30px;
+}
+
+.element-container {
+    justify-items: center;
+}
