@@ -2,7 +2,7 @@
     background-color: black;
     overflow-y: hidden;
     overflow-x: hidden;
-    --speed: 500s;
+    --speed: 300s;
 }
 
 .crypto-ticker {
@@ -10,12 +10,15 @@
     width: 100%;
     overflow: hidden;
     padding-left: 100%;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 .ticker {
     display: flex;
     flex-wrap: nowrap;
     padding-right: 100%;
+
 
     -webkit-animation-iteration-count:  infinite;
     -webkit-animation-timing-function: linear;
@@ -26,22 +29,33 @@
 .crypto-element {
     display: grid,
     align-items: center;
-    padding: 2rem;
-    margin-right: 10px;
+    padding: 1rem;
+    margin-top: .5rem:
+    /* margin-right: 5px; */
 }
 
 .logo-class {
     color: azure;
     display: inline-block;
+    white-space: nowrap;
 }
 
 .image-class {
+    align-self: center;
     height: 30px;
     width: 30px;
 }
 
+.info-class {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
 .price-class {
     color: azure;
+    white-space: nowrap;
 }
 
 @-webkit-keyframes ticker {

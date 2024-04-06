@@ -4,6 +4,8 @@ ticker.className = 'ticker';
 
 window.api.onReceiveData((data) => {
   data.forEach((datum) => {
+    // const formattedPrice = reformatPrice(datum);
+
 
     const cryptoElement = document.createElement('div');
     cryptoElement.className = 'crypto-element';
@@ -12,19 +14,32 @@ window.api.onReceiveData((data) => {
     nameElement.textContent = datum.name;
     nameElement.className = 'logo-class';
 
+    const infoDiv = document.createElement('div');
+    infoDiv.className = 'info-class'
+
     const imageElement = document.createElement('img');
     imageElement.src = datum.logo;
     imageElement.className = 'image-class';
 
     const priceElement = document.createElement('span');
-    priceElement.textContent = `$ ${datum.quote.USD.price}`;
+    // priceElement.textContent = datum.quote.USD.price;
+    priceElement.textContent = reformatPrice(datum);
     priceElement.className = 'price-class';
 
-    // cryptoElement.appendChild(elementContainer);
-    cryptoElement.appendChild(imageElement);
-    cryptoElement.appendChild(nameElement);
-    cryptoElement.appendChild(priceElement);
+    // TEST
+    infoDiv.appendChild(imageElement);
+    infoDiv.appendChild(nameElement);
+    infoDiv.appendChild(priceElement);
+
+    cryptoElement.appendChild(infoDiv);
+    // END TEST
 
     ticker.appendChild(cryptoElement);
   })
 });
+
+
+function reformatPrice(data) {
+    let formattedPrice = `$${data.quote.USD.price.toFixed(2)} / ${data.symbol}`;
+    return formattedPrice;
+}
