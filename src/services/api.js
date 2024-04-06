@@ -21,7 +21,7 @@ class CryptoDataFetcher {
 
     async getCryptoPriceData() {
         const endPoint = '/v1/cryptocurrency/listings/latest';
-        const params = { "limit": 10 };
+        const params = { "limit": 100 };
         const response = await this._fetchData(endPoint, params);
         const cryptoIds = response.data.data.map((crypto) => crypto.id);
         const metaDataResponse = await this._getCryptoMetadata(cryptoIds, response);

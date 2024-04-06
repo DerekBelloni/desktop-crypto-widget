@@ -1,14 +1,9 @@
-const cryptoContainer = document.getElementById('crypto-container');
-cryptoContainer.className = 'crypto-container';
+const cryptoContainer = document.getElementById('crypto-item');
+ticker.className = 'ticker';
 
 
 window.api.onReceiveData((data) => {
-  console.log('Received data in renderer process:', data);
-  // Handle the received data and update the UI
-  document.body.style.backgroundColor = "black";
   data.forEach((datum) => {
-    // const elementContainer = document.createElement('div');
-    // cryptoElement.className = 'element-container';
 
     const cryptoElement = document.createElement('div');
     cryptoElement.className = 'crypto-element';
@@ -21,10 +16,15 @@ window.api.onReceiveData((data) => {
     imageElement.src = datum.logo;
     imageElement.className = 'image-class';
 
+    const priceElement = document.createElement('span');
+    priceElement.textContent = `$ ${datum.quote.USD.price}`;
+    priceElement.className = 'price-class';
+
     // cryptoElement.appendChild(elementContainer);
     cryptoElement.appendChild(imageElement);
     cryptoElement.appendChild(nameElement);
+    cryptoElement.appendChild(priceElement);
 
-    cryptoContainer.appendChild(cryptoElement);
+    ticker.appendChild(cryptoElement);
   })
 });

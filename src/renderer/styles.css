@@ -1,17 +1,38 @@
-.logo-class {
-    color: azure;
-    display: inline-block;
+:root {
+    background-color: black;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    --speed: 500s;
 }
 
-.crypto-container {
+.crypto-ticker {
+    display: flex;
+    width: 100%;
+    overflow: hidden;
+    padding-left: 100%;
+}
+
+.ticker {
     display: flex;
     flex-wrap: nowrap;
+    padding-right: 100%;
+
+    -webkit-animation-iteration-count:  infinite;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-name: ticker;
+    -webkit-animation-duration: var(--speed);
 }
 
 .crypto-element {
-    display: flex,
+    display: grid,
     align-items: center;
+    padding: 2rem;
     margin-right: 10px;
+}
+
+.logo-class {
+    color: azure;
+    display: inline-block;
 }
 
 .image-class {
@@ -19,6 +40,18 @@
     width: 30px;
 }
 
-.element-container {
-    justify-items: center;
+.price-class {
+    color: azure;
+}
+
+@-webkit-keyframes ticker {
+    0% {
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+        visibility: visible;
+    }
+    100% {
+        -webkit-transform: translateX(-100%);
+        transform: translateX(-100%);
+    }
 }

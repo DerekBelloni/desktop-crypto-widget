@@ -6,7 +6,9 @@ const createWindow = () => {
     let cryptoData = null;
     const win = new BrowserWindow({
         width: 800,
-        height: 600,
+        height: 100,
+        frame: false,
+        titleBarStyle: 'hidden',
         webPreferences: {
             preload: path.join(__dirname, 'preloads/preload.js'),
             contextIsolation: true,
