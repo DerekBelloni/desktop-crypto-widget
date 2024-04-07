@@ -4,7 +4,7 @@ const CryptoDataFetcher = require('./services/api');
 
 const createWindow = () => {
     let cryptoData = null;
-
+    const cryptoDataFetcher = new CryptoDataFetcher();
     const { width } = screen.getPrimaryDisplay().workAreaSize;
 
     const win = new BrowserWindow({
@@ -21,11 +21,11 @@ const createWindow = () => {
     });
 
     win.once('ready-to-show', () => {
-        const cryptoDataFetcher = new CryptoDataFetcher();
+        // const cryptoDataFetcher = new CryptoDataFetcher();
         cryptoDataFetcher.getCryptoPriceData()
             .then((response) => {
                 cryptoData = response;
-                win.webContents.send('receive-data', cryptoData);
+                win.webContents.send('receive-data', cryptoData, false);
                 win.show();
             })
             .catch((error) => {
@@ -40,6 +40,14 @@ const createWindow = () => {
 
     win.setPosition(x, y);
     win.loadFile('src/renderer/index.html');    
+    // win.webContents.openDevTools();
+    setInterval(() => {
+        cryptoDataFetcher.getCryptoPriceData()
+            .then((response) => {
+                cryptoData = response;
+                win.webContents.send('receive-data', cryptoData, true);
+            })
+    }, 60000);
 }
 
 app.whenReady().then(() => {

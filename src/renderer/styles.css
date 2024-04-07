@@ -1,5 +1,5 @@
 :root {
-    background-color: black;
+    background-color: #171924;
     overflow-y: hidden;
     overflow-x: hidden;
     --speed: 300s;
@@ -38,6 +38,7 @@
     color: azure;
     display: inline-block;
     white-space: nowrap;
+    font-weight: 500;
 }
 
 .image-class {
@@ -56,7 +57,15 @@
 .price-class {
     color: azure;
     white-space: nowrap;
+    font-weight: 500;
+    transition: color 4s ease-in-out;
 }
+
+.updated {
+    color: #34F49E !important;
+    transition: color .1s ease-in;
+}
+
 
 @-webkit-keyframes ticker {
     0% {
