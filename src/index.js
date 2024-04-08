@@ -9,7 +9,7 @@ const createWindow = () => {
 
     const win = new BrowserWindow({
         width: 800,
-        height: 100,
+        height: 105,
         frame: false,
         show: false,
         titleBarStyle: 'hidden',
@@ -21,7 +21,6 @@ const createWindow = () => {
     });
 
     win.once('ready-to-show', () => {
-        // const cryptoDataFetcher = new CryptoDataFetcher();
         cryptoDataFetcher.getCryptoPriceData()
             .then((response) => {
                 cryptoData = response;
@@ -39,8 +38,8 @@ const createWindow = () => {
     const y = 0;
 
     win.setPosition(x, y);
-    win.loadFile('src/renderer/index.html');    
-    // win.webContents.openDevTools();
+    win.loadFile('src/renderer/index.html'); 
+
     setInterval(() => {
         cryptoDataFetcher.getCryptoPriceData()
             .then((response) => {

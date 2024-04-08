@@ -3,8 +3,6 @@ ticker.className = 'ticker';
 
 
 window.api.onReceiveData((data, isUpdate) => {
-  	console.log('is update: ', isUpdate);
-
   if (!isUpdate) {
 		data.forEach((datum) => {
 			const cryptoElement = document.createElement('div');
@@ -23,7 +21,7 @@ window.api.onReceiveData((data, isUpdate) => {
 			imageElement.className = 'image-class';
 
 			const priceElement = document.createElement('span');
-			priceElement.textContent = reformatPrice(datum);
+			priceElement.innerHTML = reformatPrice(datum);
 			priceElement.className = 'price-class';
 
 			infoDiv.appendChild(imageElement);
@@ -37,12 +35,11 @@ window.api.onReceiveData((data, isUpdate) => {
   } else {
 		data.forEach((datum) => {
 			const cryptoElement = document.querySelector(`.crypto-element[data-id="${datum.id}"]`);
-			console.log('selected crypto element in update: ', cryptoElement);
 			if (cryptoElement) {
 				const priceElement = cryptoElement.querySelector('.price-class');
 				const updatedPrice = reformatPrice(datum);
 
-				priceElement.textContent = updatedPrice;
+				priceElement.innerHTML = updatedPrice;
 				priceElement.classList.add('updated');
 				setTimeout(() => {
 					priceElement.classList.remove('updated');
@@ -52,13 +49,28 @@ window.api.onReceiveData((data, isUpdate) => {
   }
 });
 
+function countConsecutiveZeros(data) {
+	const str = data.quote.USD.price.toString();
+	const match = str.match(/\.0+/);
+
+	if (match) {
+		let matchLength = match[0].length -1;
+		return matchLength + 4;
+	}
+
+	return 4;
+}
+
 
 function reformatPrice(data) {
     let formattedPrice;
+
     if (data.quote.USD.price >= 1) {
-      formattedPrice = `$${data.quote.USD.price.toFixed(2)} / ${data.symbol}`;
+    	formattedPrice = `<span>$${data.quote.USD.price.toFixed(2)}</span> <span class="price-symbol">/ ${data.symbol}</span>`;
     } else {
-      formattedPrice = `$${data.quote.USD.price.toFixed(7)} / ${data.symbol}`;
+		let fixed = countConsecutiveZeros(data);
+      	formattedPrice = `<span >$${data.quote.USD.price.toFixed(fixed)}</span> <span class="price-symbol">/ ${data.symbol}</span>`;
     }
+
     return formattedPrice;
 }

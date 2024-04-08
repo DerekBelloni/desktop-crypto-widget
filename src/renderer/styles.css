@@ -61,6 +61,11 @@
     transition: color 4s ease-in-out;
 }
 
+.price-symbol {
+    color: azure;
+    transition: color 4s ease-in-out;
+}
+
 .updated {
     color: #34F49E !important;
     transition: color .1s ease-in;
